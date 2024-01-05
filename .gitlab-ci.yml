@@ -1,6 +1,6 @@
 stages:
   - sync-code
-  - publish-webpack-plugins
+  - publish-dts-to-types
 
 sync-code:
   stage: sync-code
@@ -19,8 +19,8 @@ sync-code:
   tags:
     - qiushaocloud-runner
 
-publish-webpack-plugins:
-  stage: publish-webpack-plugins
+publish-dts-to-types:
+  stage: publish-dts-to-types
   only:
     - tags
   script:
@@ -33,7 +33,7 @@ publish-webpack-plugins:
     - cd qtypings-browser-global && ls -la && cat .npmrc && npm publish --access=public || true
     - rm -rf .npmrc
     - cd ..
-    - sed -i "s#@types/qtypings-browser-global#@qiushaocloud/@types/qtypings-browser-global#" qtypings-browser-global/package.
+    - sed -i "s#@types/qtypings-browser-global#@qiushaocloud/@types/qtypings-browser-global#" qtypings-browser-global/package.json
     - cat qtypings-browser-global/package.json
     - sed -i "s#@types/qtypings-browser-global#@qiushaocloud/@types/qtypings-browser-global#" qtypings-browser-global/README.md
     - cat qtypings-browser-global/README.md
