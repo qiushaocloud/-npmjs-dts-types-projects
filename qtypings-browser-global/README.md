@@ -5,7 +5,7 @@
 * github 地址: https://github.com/qiushaocloud/npmjs-dts-types-projects
 
 ### npm 包
-* 安装 npm 包: `npm install --save @types/qtypings-browser-global`
+* 安装 npm 包: `npm install --save-dev @types/qtypings-browser-global`
 
 ###  TS 定义
 #### browser.d.ts

@@ -5,7 +5,7 @@ NodeJS 环境定义一些全局接口、类型等
 * github 地址: https://github.com/qiushaocloud/npmjs-dts-types-projects
 
 ### npm 包
-* 安装 npm 包: `npm install --save @types/qtypings-nodejs-global`
+* 安装 npm 包: `npm install --save-dev @types/qtypings-nodejs-global`
 
 ###  TS 定义
 #### nodejs.d.ts
