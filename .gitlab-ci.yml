@@ -33,8 +33,10 @@ publish-webpack-plugins:
     - cd qtypings-browser-global && ls -la && cat .npmrc && npm publish --access=public || true
     - rm -rf .npmrc
     - cd ..
-    - sed -i "s#@types/qtypings-browser-global#@qiushaocloud/@types/qtypings-browser-global#" qtypings-browser-global/package.json
+    - sed -i "s#@types/qtypings-browser-global#@qiushaocloud/@types/qtypings-browser-global#" qtypings-browser-global/package.
+    - cat qtypings-browser-global/package.json
     - sed -i "s#@types/qtypings-browser-global#@qiushaocloud/@types/qtypings-browser-global#" qtypings-browser-global/README.md
+    - cat qtypings-browser-global/README.md
     - cp -ra .npmrc.tpl qtypings-browser-global/.npmrc
     - sed -i "s#<NPM_REGISTRY_HOST>#registry.npmjs.org#g" qtypings-browser-global/.npmrc
     - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN#g" qtypings-browser-global/.npmrc
@@ -49,7 +51,9 @@ publish-webpack-plugins:
     - rm -rf .npmrc
     - cd ..
     - sed -i "s#@types/qtypings-nodejs-global#@qiushaocloud/@types/qtypings-nodejs-global#" qtypings-nodejs-global/package.json
+    - cat qtypings-nodejs-global/package.json
     - sed -i "s#@types/qtypings-nodejs-global#@qiushaocloud/@types/qtypings-nodejs-global#" qtypings-nodejs-global/README.md
+    - cat qtypings-nodejs-global/README.md
     - cp -ra .npmrc.tpl qtypings-nodejs-global/.npmrc
     - sed -i "s#<NPM_REGISTRY_HOST>#registry.npmjs.org#g" qtypings-nodejs-global/.npmrc
     - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN#g" qtypings-nodejs-global/.npmrc
