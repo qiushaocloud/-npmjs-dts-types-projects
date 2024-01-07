@@ -1,0 +1,5 @@
+.gitlab-ci.yml
+.gitignore
+.npmrc.tpl
+.npmrc
+push-remote-git-repos.sh

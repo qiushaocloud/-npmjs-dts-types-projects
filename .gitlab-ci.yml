@@ -5,7 +5,7 @@ stages:
 sync-code:
   stage: sync-code
   only:
-    - master
+    - qtypings-browser-global
   script:
     - export GIT_NAME_DIR=`grep -E "url = .*.git" $PWD/.git/config|awk -F 'qiushaocloud/' '{print $2}' | sed s/\.git//g`
     - git config --global user.email "qiushaocloud@126.com"
@@ -14,53 +14,8 @@ sync-code:
     - mkdir -p /root/codes && cd /root/codes
     #- chmod 600 /root/.ssh/id_rsa
     - git clone ssh://git@gitlab.qiushaocloud.top:61023/qiushaocloud/$GIT_NAME_DIR.git
+    - git checkout -b qtypings-browser-global origin/qtypings-browser-global
     - cd $GIT_NAME_DIR && echo `pwd`
     - sh push-remote-git-repos.sh
-  tags:
-    - qiushaocloud-runner
-
-publish-dts-to-types:
-  stage: publish-dts-to-types
-  only:
-    - tags
-  script:
-    - apk add --no-cache nodejs npm
-    - node -v && npm -v
-    # qtypings-browser-global
-    - cp -ra .npmrc.tpl qtypings-browser-global/.npmrc
-    - sed -i "s#<NPM_REGISTRY_HOST>#npm.qiushaocloud.top:4873#g" qtypings-browser-global/.npmrc
-    - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$QIUSHAOCLOUD_SELF_NPMJS_PUBLISH_TOKEN#g" qtypings-browser-global/.npmrc
-    - cd qtypings-browser-global && ls -la && cat .npmrc && npm publish --access=public || true
-    - rm -rf .npmrc
-    - cd ..
-    - sed -i "s#@types/qtypings-browser-global#@qiushaocloud-types/qtypings-browser-global#" qtypings-browser-global/package.json
-    - cat qtypings-browser-global/package.json
-    - sed -i "s#@types/qtypings-browser-global#@qiushaocloud-types/qtypings-browser-global#" qtypings-browser-global/README.md
-    - sed -i "s/### npm 包/### npm 包\n* \`tsconfig.json\` 引入 @qiushaocloud-types\/qtypings-browser-global:\`tsconfig.json\` 中需要配置\`\"files\":[\"node_modules\/@qiushaocloud-types\/qtypings-browser-global\/index.d.ts\"]\`/" qtypings-browser-global/README.md
-    - cat qtypings-browser-global/README.md
-    - cp -ra .npmrc.tpl qtypings-browser-global/.npmrc
-    - sed -i "s#<NPM_REGISTRY_HOST>#registry.npmjs.org#g" qtypings-browser-global/.npmrc
-    - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN#g" qtypings-browser-global/.npmrc
-    - cd qtypings-browser-global && ls -la && cat .npmrc && npm publish --access=public || true
-    - rm -rf .npmrc
-    - cd ..
-    # qtypings-nodejs-global
-    - cp -ra .npmrc.tpl qtypings-nodejs-global/.npmrc
-    - sed -i "s#<NPM_REGISTRY_HOST>#npm.qiushaocloud.top:4873#g" qtypings-nodejs-global/.npmrc
-    - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$QIUSHAOCLOUD_SELF_NPMJS_PUBLISH_TOKEN#g" qtypings-nodejs-global/.npmrc
-    - cd qtypings-nodejs-global && ls -la && cat .npmrc && npm publish --access=public || true
-    - rm -rf .npmrc
-    - cd ..
-    - sed -i "s#@types/qtypings-nodejs-global#@qiushaocloud-types/qtypings-nodejs-global#" qtypings-nodejs-global/package.json
-    - cat qtypings-nodejs-global/package.json
-    - sed -i "s#@types/qtypings-nodejs-global#@qiushaocloud-types/qtypings-nodejs-global#" qtypings-nodejs-global/README.md
-    - sed -i "s/### npm 包/### npm 包\n* \`tsconfig.json\` 引入 @qiushaocloud-types\/qtypings-nodejs-global:\`tsconfig.json\` 中需要配置\`\"files\":[\"node_modules\/@qiushaocloud-types\/qtypings-nodejs-global\/index.d.ts\"]\`/" qtypings-nodejs-global/README.md
-    - cat qtypings-nodejs-global/README.md
-    - cp -ra .npmrc.tpl qtypings-nodejs-global/.npmrc
-    - sed -i "s#<NPM_REGISTRY_HOST>#registry.npmjs.org#g" qtypings-nodejs-global/.npmrc
-    - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN#g" qtypings-nodejs-global/.npmrc
-    - cd qtypings-nodejs-global && ls -la && cat .npmrc && npm publish --access=public || true
-    - rm -rf .npmrc
-    - cd ..
   tags:
     - qiushaocloud-runner

@@ -1,25 +1,81 @@
-# npmjs-dts-types-projects
-qiushaocloud @types 项目集，例如: @types/qtypings-nodejs-global、@types/qtypings-browser-global 等
+浏览器环境定义一些全局接口、类型等
+
+### 项目源码
+* 自建 gitlab 地址: https://gitlab.qiushaocloud.top/qiushaocloud/npmjs-dts-types-projects
+* github 地址: https://github.com/qiushaocloud/npmjs-dts-types-projects
+
+### npm 包
+* 安装 npm 包: `npm install --save-dev @types/qtypings-browser-global`
+
+###  TS 定义
+#### browser.d.ts
+```typescript
+declare global {
+    interface Window {
+        [propName: string]: unknown;
+    }
+
+    interface Document {
+        [propName: string]: unknown;
+    }
+
+    interface Navigator {
+        [propName: string]: unknown;
+    }
+}
+
+export {};
+```
+
+#### object.d.ts
+```typescript
+declare type IQJson = Record<string, any>;
+
+declare type IQJsonT<T> = Record<string, T>;
+
+declare type IQJsonNumber = Record<number, any>
+
+declare type IQJsonNumberT<T> = Record<number, T>;
+```
 
 
-## qiushaocloud @types 集
-### qtypings-browser-global
-> * 浏览器环境定义一些全局接口、类型等
-> * [对应 MD 文件: qtypings-browser-global/README.md](qtypings-browser-global/README.md)
+#### fn.d.ts
+```typescript
+/** 任意回调参数的回调函数 */
+declare interface IQFnAnyArgs{
+    (... args:any[]):void;
+}
 
-### qtypings-nodejs-global
-> * NodeJS 环境定义一些全局接口、类型等
-> * [对应 MD 文件: qtypings-nodejs-global/README.md](qtypings-nodejs-global/README.md)
+/** 无回调参数的回调函数 */
+declare interface IQFnEmptyArgs{
+    ():void;
+}
 
+/** 任意回调参数的回调函数, 返回类型T */
+declare interface IQFnAnyArgsReturnT<T>{
+    (... args:any[]): T;
+}
 
+/** 是否成功回调函数 */
+declare interface IQFnIsSuccess{
+    (isSuccess: boolean):void;
+}
 
-#### 参与贡献
+/** 是否成功回调函数, 第2个参数开始任意回调参数*/
+declare interface IQFnIsSuccessAnyArgs{
+    (isSuccess: boolean, ...args: any[]):void;
+}
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+/** 错误则无result，有result则无错误 */
+declare interface IQFnErrorOrResult{
+    (err: Error | any | void, result?: any, ...args: any[]): void;
+}
 
+/** 错误描述回调 */
+declare interface IQFnErrorDesc{
+    (errDesc: string): void;
+}
+```
 
 
 #### 开源不易，如果对您有帮助，请您动一动您的小手，给作者点 Star，也请您多多关注分享者「[邱少羽梦](https://www.qiushaocloud.top)」
