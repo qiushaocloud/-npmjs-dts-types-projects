@@ -1,30 +1,20 @@
-浏览器环境定义一些全局接口、类型等
+NodeJS 环境定义一些全局接口、类型等
 
 ### 项目源码
 * 自建 gitlab 地址: https://gitlab.qiushaocloud.top/qiushaocloud/npmjs-dts-types-projects
 * github 地址: https://github.com/qiushaocloud/npmjs-dts-types-projects
 
 ### npm 包
-* 安装 npm 包: `npm install --save-dev @types/qtypings-browser-global`
+* 安装 npm 包: `npm install --save-dev @types/qtypings-nodejs-global`
 
 ###  TS 定义
-#### browser.d.ts
+#### nodejs.d.ts
 ```typescript
-declare global {
-    interface Window {
-        [propName: string]: unknown;
-    }
-
-    interface Document {
-        [propName: string]: unknown;
-    }
-
-    interface Navigator {
-        [propName: string]: unknown;
+declare namespace NodeJS {
+    interface Global {
+        [propName: string]: any;
     }
 }
-
-export {};
 ```
 
 #### object.d.ts
@@ -37,7 +27,6 @@ declare type IQJsonNumber = Record<number, any>
 
 declare type IQJsonNumberT<T> = Record<number, T>;
 ```
-
 
 #### fn.d.ts
 ```typescript
