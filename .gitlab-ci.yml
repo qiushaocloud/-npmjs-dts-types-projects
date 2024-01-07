@@ -15,6 +15,7 @@ sync-code:
     - git clone ssh://git@gitlab.qiushaocloud.top:61023/qiushaocloud/$GIT_NAME_DIR.git
     - git checkout -b qtypings-browser-global origin/qtypings-browser-global || git checkout -b qtypings-browser-global
     - cd $GIT_NAME_DIR && echo `pwd`
+    - git checkout -b qtypings-browser-global origin/qtypings-browser-global || git checkout -b qtypings-browser-global || git checkout qtypings-browser-global
     - sh push-remote-git-repos.sh
   tags:
     - qiushaocloud-runner
