@@ -1,9 +1,8 @@
 stages:
-  - sync-code
-  - publish-dts-to-types
+  - sync-code-branch
 
 sync-code:
-  stage: sync-code
+  stage: sync-code-branch
   only:
     - qtypings-browser-global
   script:
@@ -14,7 +13,7 @@ sync-code:
     - mkdir -p /root/codes && cd /root/codes
     #- chmod 600 /root/.ssh/id_rsa
     - git clone ssh://git@gitlab.qiushaocloud.top:61023/qiushaocloud/$GIT_NAME_DIR.git
-    - git checkout -b qtypings-browser-global origin/qtypings-browser-global
+    - git checkout -b qtypings-browser-global origin/qtypings-browser-global || git checkout -b qtypings-browser-global
     - cd $GIT_NAME_DIR && echo `pwd`
     - sh push-remote-git-repos.sh
   tags:
