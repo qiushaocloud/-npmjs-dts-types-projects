@@ -11,6 +11,9 @@ qiushaocloud @types 项目集，例如: @types/qtypings-nodejs-global、@types/q
 > * NodeJS 环境定义一些全局接口、类型等
 > * [对应 MD 文件: qtypings-nodejs-global/README.md](qtypings-nodejs-global/README.md)
 
+### qesm-nodejs-adapter
+> * 主要用于 NodeJS 环境，ES 模块的适配，例如: __dirname 通过适配的 getImportDirName 获取
+> * [对应 MD 文件: qesm-nodejs-adapter/README.md](qesm-nodejs-adapter/README.md)
 
 
 #### 参与贡献
