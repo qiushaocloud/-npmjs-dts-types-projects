@@ -1,6 +1,6 @@
 {
   "name": "@types/qtypings-nodejs-global",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "this is an npm package of qiushaocloud typings nodejs global dts file",
   "author": "qiushaocloud",
   "license": "MIT",
