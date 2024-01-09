@@ -26,6 +26,19 @@ publish-dts-to-types:
   script:
     - apk add --no-cache nodejs npm
     - node -v && npm -v
+    # qesm-nodejs-adapter
+    - cp -ra .npmrc.tpl qesm-nodejs-adapter/.npmrc
+    - sed -i "s#<NPM_REGISTRY_HOST>#npm.qiushaocloud.top:4873#g" qesm-nodejs-adapter/.npmrc
+    - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$QIUSHAOCLOUD_SELF_NPMJS_PUBLISH_TOKEN#g" qesm-nodejs-adapter/.npmrc
+    - cd qesm-nodejs-adapter && ls -la && cat .npmrc && npm publish --access=public || true
+    - rm -rf .npmrc
+    - cd ..
+    - cp -ra .npmrc.tpl qesm-nodejs-adapter/.npmrc
+    - sed -i "s#<NPM_REGISTRY_HOST>#registry.npmjs.org#g" qesm-nodejs-adapter/.npmrc
+    - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN#g" qesm-nodejs-adapter/.npmrc
+    - cd qesm-nodejs-adapter && ls -la && cat .npmrc && npm publish --access=public || true
+    - rm -rf .npmrc
+    - cd ..
     # qtypings-browser-global
     - cp -ra .npmrc.tpl qtypings-browser-global/.npmrc
     - sed -i "s#<NPM_REGISTRY_HOST>#npm.qiushaocloud.top:4873#g" qtypings-browser-global/.npmrc
@@ -60,19 +73,6 @@ publish-dts-to-types:
     - sed -i "s#<NPM_REGISTRY_HOST>#registry.npmjs.org#g" qtypings-nodejs-global/.npmrc
     - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN#g" qtypings-nodejs-global/.npmrc
     - cd qtypings-nodejs-global && ls -la && cat .npmrc && npm publish --access=public || true
-    - rm -rf .npmrc
-    - cd ..
-    # qesm-nodejs-adapter
-    - cp -ra .npmrc.tpl qesm-nodejs-adapter/.npmrc
-    - sed -i "s#<NPM_REGISTRY_HOST>#npm.qiushaocloud.top:4873#g" qesm-nodejs-adapter/.npmrc
-    - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$QIUSHAOCLOUD_SELF_NPMJS_PUBLISH_TOKEN#g" qesm-nodejs-adapter/.npmrc
-    - cd qesm-nodejs-adapter && ls -la && cat .npmrc && npm publish --access=public || true
-    - rm -rf .npmrc
-    - cd ..
-    - cp -ra .npmrc.tpl qesm-nodejs-adapter/.npmrc
-    - sed -i "s#<NPM_REGISTRY_HOST>#registry.npmjs.org#g" qesm-nodejs-adapter/.npmrc
-    - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN#g" qesm-nodejs-adapter/.npmrc
-    - cd qesm-nodejs-adapter && ls -la && cat .npmrc && npm publish --access=public || true
     - rm -rf .npmrc
     - cd ..
   tags:
