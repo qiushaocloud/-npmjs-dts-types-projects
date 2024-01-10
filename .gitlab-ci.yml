@@ -40,10 +40,12 @@ sync-branch:
     - git checkout -b qtypings-browser-global origin/qtypings-browser-global || git checkout -b qtypings-browser-global || git checkout qtypings-browser-global || true
     - cp -ra /tmp/qtypings-browser-global/* ./
     - (git add . && git commit -m 'update code to qtypings-browser-global branch' && git push) || true
+    - ls -la
     # qtypings-nodejs-global branch
     - git checkout -b qtypings-nodejs-global origin/qtypings-nodejs-global || git checkout -b qtypings-nodejs-global || git checkout qtypings-nodejs-global || true
     - cp -ra /tmp/qtypings-nodejs-global/* ./
     - (git add . && git commit -m 'update code to qtypings-nodejs-global branch' && git push) || true
+    - ls -la
   tags:
     - qiushaocloud-runner
 
