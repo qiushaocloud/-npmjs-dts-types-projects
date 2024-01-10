@@ -1,5 +1,6 @@
 stages:
   - sync-code
+  - sync-branch
   - publish-dts-to-types
 
 sync-code:
@@ -16,6 +17,33 @@ sync-code:
     - git clone ssh://git@gitlab.qiushaocloud.top:61023/qiushaocloud/$GIT_NAME_DIR.git
     - cd $GIT_NAME_DIR && echo `pwd`
     - sh push-remote-git-repos.sh
+  tags:
+    - qiushaocloud-runner
+
+sync-branch:
+  stage: sync-branch
+  only:
+    - master
+  script:
+    - export GIT_NAME_DIR=`grep -E "url = .*.git" $PWD/.git/config|awk -F 'qiushaocloud/' '{print $2}' | sed s/\.git//g`
+    - git config --global user.email "qiushaocloud@126.com"
+    - git config --global user.name "qiushaocloud"
+    - export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
+    - mkdir -p /root/codes && cd /root/codes
+    #- chmod 600 /root/.ssh/id_rsa
+    - git clone ssh://git@gitlab.qiushaocloud.top:61023/qiushaocloud/$GIT_NAME_DIR.git
+    - cd $GIT_NAME_DIR && echo `pwd`
+    # copy branch code to /tmp/branch
+    - cp -ra qtypings-browser-global /tmp/qtypings-browser-global
+    - cp -ra qtypings-nodejs-global /tmp/qtypings-nodejs-global
+    # qtypings-browser-global branch
+    - git checkout -b qtypings-browser-global origin/qtypings-browser-global || git checkout -b qtypings-browser-global || git checkout qtypings-browser-global || true
+    - cp -ra /tmp/qtypings-browser-global/* ./
+    - (git add . && git commit -m 'update code to qtypings-browser-global branch' && git push) || true
+    # qtypings-nodejs-global branch
+    - git checkout -b qtypings-nodejs-global origin/qtypings-nodejs-global || git checkout -b qtypings-nodejs-global || git checkout qtypings-nodejs-global || true
+    - cp -ra /tmp/qtypings-nodejs-global/* ./
+    - (git add . && git commit -m 'update code to qtypings-nodejs-global branch' && git push) || true
   tags:
     - qiushaocloud-runner
 
