@@ -1,7 +1,7 @@
-declare type IQJson = Record<string, any>;
+type QJson = Record<string, any>;
 
-declare type IQJsonT<T> = Record<string, T>;
+type QJsonT<T> = Record<string, T>;
 
-declare type IQJsonNumber = Record<number, any>
+type QJsonNumber = Record<number, any>
 
-declare type IQJsonNumberT<T> = Record<number, T>;
+type QJsonNumberT<T> = Record<number, T>;
