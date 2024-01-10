@@ -1,34 +1,35 @@
 /** 任意回调参数的回调函数 */
-declare interface IQFnAnyArgs{
+interface QFnAnyArgs{
     (... args:any[]):void;
 }
 
 /** 无回调参数的回调函数 */
-declare interface IQFnEmptyArgs{
+interface QFnEmptyArgs{
     ():void;
 }
 
 /** 任意回调参数的回调函数, 返回类型T */
-declare interface IQFnAnyArgsReturnT<T>{
+interface QFnAnyArgsReturnT<T>{
     (... args:any[]): T;
 }
 
 /** 是否成功回调函数 */
-declare interface IQFnIsSuccess{
+interface QFnIsSuccess{
     (isSuccess: boolean):void;
 }
 
 /** 是否成功回调函数, 第2个参数开始任意回调参数*/
-declare interface IQFnIsSuccessAnyArgs{
+interface QFnIsSuccessAnyArgs{
     (isSuccess: boolean, ...args: any[]):void;
 }
 
 /** 错误则无result，有result则无错误 */
-declare interface IQFnErrorOrResult{
-    (err: Error | any | void, result?: any, ...args: any[]): void;
+interface QFnErrorOrResult{
+    // eslint-disable-next-line @definitelytyped/no-any-union
+    (err: Error | any | undefined, result?: any, ...args: any[]): void;
 }
 
 /** 错误描述回调 */
-declare interface IQFnErrorDesc{
+interface QFnErrorDesc{
     (errDesc: string): void;
 }
