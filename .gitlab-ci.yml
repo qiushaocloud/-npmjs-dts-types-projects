@@ -60,20 +60,20 @@ publish-dts-to-types:
     - cp -ra .npmrc.tpl qesm-nodejs-adapter/.npmrc
     - sed -i "s#<NPM_REGISTRY_HOST>#npm.qiushaocloud.top:4873#g" qesm-nodejs-adapter/.npmrc
     - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$QIUSHAOCLOUD_SELF_NPMJS_PUBLISH_TOKEN#g" qesm-nodejs-adapter/.npmrc
-    - cd qesm-nodejs-adapter && ls -la && cat .npmrc && npm publish --access=public --dry-run || true
+    - cd qesm-nodejs-adapter && ls -la && cat .npmrc && (npm publish --access=public --dry-run && npm publish --access=public) || true
     - rm -rf .npmrc
     - cd ..
     - cp -ra .npmrc.tpl qesm-nodejs-adapter/.npmrc
     - sed -i "s#<NPM_REGISTRY_HOST>#registry.npmjs.org#g" qesm-nodejs-adapter/.npmrc
     - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN#g" qesm-nodejs-adapter/.npmrc
-    - cd qesm-nodejs-adapter && ls -la && cat .npmrc && npm publish --access=public --dry-run || true
+    - cd qesm-nodejs-adapter && ls -la && cat .npmrc && (npm publish --access=public --dry-run && npm publish --access=public) || true
     - rm -rf .npmrc
     - cd ..
     # qtypings-browser-global
     - cp -ra .npmrc.tpl qtypings-browser-global/.npmrc
     - sed -i "s#<NPM_REGISTRY_HOST>#npm.qiushaocloud.top:4873#g" qtypings-browser-global/.npmrc
     - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$QIUSHAOCLOUD_SELF_NPMJS_PUBLISH_TOKEN#g" qtypings-browser-global/.npmrc
-    - cd qtypings-browser-global && ls -la && cat .npmrc && npm publish --access=public --dry-run || true
+    - cd qtypings-browser-global && ls -la && cat .npmrc && (npm publish --access=public --dry-run && npm publish --access=public) || true
     - rm -rf .npmrc
     - cd ..
     - sed -i "s#@types/qtypings-browser-global#@qiushaocloud-types/qtypings-browser-global#" qtypings-browser-global/package.json
@@ -84,14 +84,14 @@ publish-dts-to-types:
     - cp -ra .npmrc.tpl qtypings-browser-global/.npmrc
     - sed -i "s#<NPM_REGISTRY_HOST>#registry.npmjs.org#g" qtypings-browser-global/.npmrc
     - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN#g" qtypings-browser-global/.npmrc
-    - cd qtypings-browser-global && ls -la && cat .npmrc && npm publish --access=public --dry-run || true
+    - cd qtypings-browser-global && ls -la && cat .npmrc && (npm publish --access=public --dry-run && npm publish --access=public) || true
     - rm -rf .npmrc
     - cd ..
     # qtypings-nodejs-global
     - cp -ra .npmrc.tpl qtypings-nodejs-global/.npmrc
     - sed -i "s#<NPM_REGISTRY_HOST>#npm.qiushaocloud.top:4873#g" qtypings-nodejs-global/.npmrc
     - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$QIUSHAOCLOUD_SELF_NPMJS_PUBLISH_TOKEN#g" qtypings-nodejs-global/.npmrc
-    - cd qtypings-nodejs-global && ls -la && cat .npmrc && npm publish --access=public --dry-run || true
+    - cd qtypings-nodejs-global && ls -la && cat .npmrc && (npm publish --access=public --dry-run && npm publish --access=public) || true
     - rm -rf .npmrc
     - cd ..
     - sed -i "s#@types/qtypings-nodejs-global#@qiushaocloud-types/qtypings-nodejs-global#" qtypings-nodejs-global/package.json
@@ -102,7 +102,7 @@ publish-dts-to-types:
     - cp -ra .npmrc.tpl qtypings-nodejs-global/.npmrc
     - sed -i "s#<NPM_REGISTRY_HOST>#registry.npmjs.org#g" qtypings-nodejs-global/.npmrc
     - sed -i "s#<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>#$CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN#g" qtypings-nodejs-global/.npmrc
-    - cd qtypings-nodejs-global && ls -la && cat .npmrc && npm publish --access=public --dry-run || true
+    - cd qtypings-nodejs-global && ls -la && cat .npmrc && (npm publish --access=public --dry-run && npm publish --access=public) || true
     - rm -rf .npmrc
     - cd ..
   tags:
