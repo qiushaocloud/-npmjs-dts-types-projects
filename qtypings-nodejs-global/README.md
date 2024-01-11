@@ -19,49 +19,49 @@ declare namespace NodeJS {
 
 #### object.d.ts
 ```typescript
-declare type QJson = Record<string, any>;
+type QJson = Record<string, any>;
 
-declare type QJsonT<T> = Record<string, T>;
+type QJsonT<T> = Record<string, T>;
 
-declare type QJsonNumber = Record<number, any>
+type QJsonNumber = Record<number, any>
 
-declare type QJsonNumberT<T> = Record<number, T>;
+type QJsonNumberT<T> = Record<number, T>;
 ```
 
 #### fn.d.ts
 ```typescript
 /** 任意回调参数的回调函数 */
-declare interface QFnAnyArgs{
+interface QFnAnyArgs{
     (... args:any[]):void;
 }
 
 /** 无回调参数的回调函数 */
-declare interface QFnEmptyArgs{
+interface QFnEmptyArgs{
     ():void;
 }
 
 /** 任意回调参数的回调函数, 返回类型T */
-declare interface QFnAnyArgsReturnT<T>{
+interface QFnAnyArgsReturnT<T>{
     (... args:any[]): T;
 }
 
 /** 是否成功回调函数 */
-declare interface QFnIsSuccess{
+interface QFnIsSuccess{
     (isSuccess: boolean):void;
 }
 
 /** 是否成功回调函数, 第2个参数开始任意回调参数*/
-declare interface QFnIsSuccessAnyArgs{
+interface QFnIsSuccessAnyArgs{
     (isSuccess: boolean, ...args: any[]):void;
 }
 
 /** 错误则无result，有result则无错误 */
-declare interface QFnErrorOrResult{
-    (err: Error | any | void, result?: any, ...args: any[]): void;
+interface QFnErrorOrResult{
+    (err: Error | string | undefined, result?: any, ...args: any[]): void;
 }
 
 /** 错误描述回调 */
-declare interface QFnErrorDesc{
+interface QFnErrorDesc{
     (errDesc: string): void;
 }
 ```
